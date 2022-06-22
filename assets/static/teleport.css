@@ -1,0 +1,14 @@
+body { font-family: sans-serif; color:#333; }
+.titlebox { background:#333; left:0; right: 0; bottom:0; top:0px; height: 60px; padding-left: 20px; border-bottom-left-radius: 20px; border-top-left-radius: 20px; border-bottom-right-radius: 20px; border-top-right-radius: 20px; padding-right: 20px}
+.logo { color:#eee; font-size:48px; float: left; }
+.titlebox a { text-decoration:none; color:#eee }
+.preformatted { white-space: pre; font-family: monospace }
+.row { display: flex; }
+.column { flex: 50%; margin: 20px; }
+.divider { border-right: 2px solid #333; }
+.divider:after { position: absolute; }
+.disabled { color: #ccc; }
+.github { float: right; padding-top: 10px; }
+.pre { white-space: pre; font-family: monospace; color:#333; }
+.outline { margin: 20px; padding: 20px; background-color: #ccc; border: 1px solid #333; }
+#msg { color:#f00; }

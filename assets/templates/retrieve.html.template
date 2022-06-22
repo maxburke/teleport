@@ -1,0 +1,38 @@
+<title>teleport</title>
+<head>
+    <link rel="stylesheet" type="text/css" href="teleport.css"/>
+</head>
+<body>
+    <div class="titlebox">
+        <div class="logo">
+            <a href="/"><span style="color:#3ea8ca">t</span>eleport</a>
+        </div>
+        <div class="github">
+            <a href="https://github.com/maxburke/teleport"><img src="GitHub-Mark-Light-64px.png" style="width:40px;height:40px"/></a>
+        </div>
+    </div>
+    <div>
+        <h1>Successfully stashed!</h1>
+        <table>
+            <tr>
+                <td>Claim link</td>
+                <td id="link"></td>
+            </tr>
+            <tr>
+                <td>Claim code</td>
+                <td>{{code}}</td>
+            </tr>
+        </table>
+        <p>The person you are sending this secret to will need both the claim link and the claim code. If you are unsure about the integrity of your communications channels, you can send each component separately, for example the link with email and the code with a secure messenger like Signal.
+        <p>Your recipient will only have one opportunity to retrieve the secret!
+    </div>
+    <script>
+        (function() {
+            const link = "/claim/{{key}}";
+            const elt = document.createElement("a");
+            elt.href = link;
+            elt.text = elt.href;
+            document.getElementById("link").appendChild(elt);
+        })();
+    </script>
+</body>

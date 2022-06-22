@@ -1,0 +1,85 @@
+<title>teleport</title>
+<head>
+    <link rel="stylesheet" type="text/css" href="teleport.css"/>
+    <script>
+        function validateSize(sizeEltId, storeEltId, len, maxSize) {
+            const size = document.getElementById(sizeEltId);
+            const submit = document.getElementById(storeEltId);
+
+            if (len == 0 || len > maxSize) {
+                submit.disabled = true;
+                size.style.color = "red";
+            } else {
+                submit.disabled = false;
+                size.style.color = "black";
+            }
+            size.innerText = len.toString();
+        }
+
+        function checkSecretSize(event) {
+            const len = event.target.value.length;
+            validateSize("secretSize", "store", len, {{secretSize}});
+        }
+
+        function checkFileSize(event) {
+            let totalFileSize = 0;
+            const files = event.target.files;
+            for (let i = 0; i < files.length; i += 1) {
+                const file = files[i];
+                totalFileSize += file.size;
+            }
+
+            validateSize("fileSize", "upload", totalFileSize, {{maxUploadSize}});
+        }
+    </script>
+</head>
+<body>
+    <div class="titlebox">
+        <div class="logo">
+            <a href="/"><span style="color:#3ea8ca">t</span>eleport</a>
+        </div>
+        <div class="github">
+            <a href="https://github.com/maxburke/teleport"><img src="GitHub-Mark-Light-64px.png" style="width:40px;height:40px"/></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column divider">
+            <h1>Share Secrets</h1>
+            <form action="/secret" method="post">
+                <p><label for="text">Enter something to be shared:</label>
+                <p><textarea name="text" cols="80" rows="10" oninput="checkSecretSize(event)"></textarea>
+                <p><span id="secretSize">0</span><span> / {{secretSize}} characters max.</span>
+                <p><input type="submit" id="store" value="Upload" disabled=true/>
+            </form>
+        </div>
+        <div class="column">
+            <h1>{{uploadsHeader}}</h1>
+            <div class="{{disabledUploads}}"/>
+                <form enctype="multipart/form-data" action="/file" method="post">
+                    <p><label for="file">File to upload:</label>
+                    <p><input name="file" type="file" multiple="true" onchange="checkFileSize(event)" {{disabledUploads}}></input>
+                    <p><span id="fileSize">0</span><span> / {{maxUploadSize}} bytes max.</span>
+                    <p><input type="submit" id="upload" value="Upload" disabled=true/>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h1>What is teleport for?</h1>
+        For sending secrets!
+
+        <p>Have you ever wanted to share a password, key file, or some configuration files, with a co-worker only to realize that if you sent it by email, it'll be stuck in your sent folder and their inbox for all eternity? Or wonder who may shoulder-surf a stale chat message?
+
+        <p>When you send a secret with Teleport, it's encrypted on the server. The encryption key and a unique claim link are given to you. These two pieces are both needed for your intended recipient to claim the secret. Teleport breaks the key and the claim link into separate parts so that they can be sent with separate tools if you wish; send the claim link over chat and the key with Signal.
+
+        <p>Once an attempt is made to claim the secret, the secret is deleted forever, even if it fails. This may sound drastic but it means that secrets cannot be brute forced. It also means that if the secret is intercepted, you have a signal that it may be compromised and it needs to be changed.
+
+        <h1>Is it safe?</h1>
+
+        <p>That's a judgment call only you can make. But, you can view the source code <a href="https://github.com/maxburke/teleport"/>on GitHub</a>, and/or you can run it yourself. Unless you're Electronic Arts.
+
+        <h1>Is it free of charge?</h1>
+
+        <p>Yes! Unless you're Electronic Arts.
+    </div>
+</body>

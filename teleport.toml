@@ -1,0 +1,7 @@
+data_dir = "/tmp"
+port = 8081
+# tls_cert = "tls.pem"
+# tls_key = "tls.key"
+# max_secret_length = 4096
+# total_file_size = 262144
+# deny_files = false

@@ -1,0 +1,16 @@
+<title>teleport</title>
+<head>
+    <link rel="stylesheet" type="text/css" href="/teleport.css"/>
+</head>
+<body>
+    <div class="titlebox">
+        <div class="logo">
+            <a href="/"><span style="color:#3ea8ca">t</span>eleport</a>
+        </div>
+        <div class="github">
+            <a href="https://github.com/maxburke/teleport"><img src="/GitHub-Mark-Light-64px.png" style="width:40px;height:40px"/></a>
+        </div>
+    </div>
+    <h1>{{title}}</h1>
+    {{message}}
+</body>
